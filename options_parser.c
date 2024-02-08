@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/03 22:02:01 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/08 18:08:38 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,111 @@ static int	parse_specifier(const char *format, t_opt *opt);
 int	parse_opt(const char *format, t_opt *opt)
 {
 	int	offset;
-	int	local_offset;
-	int	(*parse_seq[4])(const char *, t_opt *);
 	int	i;
+	int	specified;
 
-	offset = 0;
-	parse_seq[0] = parse_flags;
-	parse_seq[1] = parse_width;
-	parse_seq[2] = parse_precision;
-	parse_seq[3] = parse_specifier;
-	local_offset = 0;
-	if (*format++ == '%')
+	if (*format == '%')
 	{
-		i = 0;
-		while (local_offset > -1 && i < 4)
-		{
-			local_offset = parse_seq[i++](format + offset, opt);
-			if (local_offset > -1)
-				offset += local_offset;
-			else
-				offset = local_offset;
-		}
+		offset = 1;
+		offset += parse_flags(format + offset, opt);
+		if (opt->left || ft_strchr("diuxX", opt->format) && opt->precision)
+			opt->pad = ' ';
+		if (opt->ens_sign)
+			opt->space = 0;
+		if (ft_strchr("cdipsu", opt->format))
+			opt->alt = 0;
+		offset += parse_width(format + offset, opt);
+		offset += parse_precision(format + offset, opt);
+		offset += parse_specifier(format + offset, opt);
 	}
+	else
+		offset = 0;
 	return (offset);
 }
 
 static int	parse_flags(const char *format, t_opt *opt)
 {
+	int	offset;
+	int	flag_exists;
 
+	offset = 0;
+	flag_exists = 1;
+	while (flag_exists)
+	{
+		offset++;
+		if (*format == '#')
+			opt->alt = 1;
+		else if (*format == '0')
+			opt->pad = '0';
+		else if (*format == '-')
+			opt->left = 1;
+		else if (*format == ' ')
+			opt->space = 1;
+		else if (*format == '+')
+			opt->ens_sign = 1;
+		else
+		{
+			flag_exists = 0;
+			offset--;
+		}
+	}
+	return (offset);
+}
+
+static int	parse_width(const char *format, t_opt *opt)
+{
+	int	offset;
+
+	if (ft_isdigit(*format))
+	{
+		opt->width = ft_atoi(format);
+		offset = ft_int_places(opt->width);
+		while (*(format + offset) == '0')
+			offset++;
+	}
+	else
+		offset = 0;
+	return (offset);
+}
+
+static int	parse_precision(const char *format, t_opt *opt)
+{
+	int	offset;
+
+	if (*format++ == '.')
+	{
+		if (ft_isdigit(*format))
+		{
+			opt->precision = ft_atoi(format);
+			offset = ft_int_places(opt->precision);
+			while (*(format + offset) == '0')
+				offset++;
+		}
+		else
+			offset = 0;
+	}
+	else
+		offset = 0;
+	return (offset);
+}
+
+static int	parse_specifier(const char *format, t_opt *opt)
+{
+	int	offset;
+
+	if (ft_strchr("cspdiuxX%", *format))
+	{
+		offset = 1;
+		opt->format = *format;
+		if (!(*format == 's' && *format == 'c'))
+			opt->precision = 0;
+		if (*format == 'p')
+			opt->alt = 1;
+	}
+	else
+	{
+		offset = 0;
+		opt->error = 1;
+	}
+	return (offset);
 }
