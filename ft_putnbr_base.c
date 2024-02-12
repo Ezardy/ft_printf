@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 20:20:37 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 14:26:20 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:49:55 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	isunique(char *str);
 static int	isusable(char *str);
 static void	print_in_base(unsigned long nbr, char *base, size_t size);
 
-void	ft_putnbr_base(long nbr, char *base)
+void	ft_putnbr_base(long nbr, char *base, int omit_sign)
 {
 	size_t	size;
 
@@ -25,7 +25,7 @@ void	ft_putnbr_base(long nbr, char *base)
 	{
 		if (nbr == 0)
 			ft_putchar(*base);
-		else if (nbr < 0)
+		else if (nbr < 0 && !omit_sign)
 		{
 			ft_putchar('-');
 			print_in_base(-nbr, base, ft_strlen(base));

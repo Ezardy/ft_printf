@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:47:44 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 14:24:37 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:33:07 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	print_int(t_render *render, t_opt *opt)
 		ft_putnchar(opt->pad, pad_len);
 	ft_putstr(render->sign);
 	ft_putnchar('0', prec_len);
-	ft_putnbr_base(render->value, render->base_signs);
+	ft_putnbr_base(render->value, render->base_signs, 1);
 	if (opt->left)
 		ft_putnchar(opt->pad, pad_len);
 	return (len + pad_len + prec_len + render->sign_len);

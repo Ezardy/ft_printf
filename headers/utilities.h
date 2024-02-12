@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:01:48 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 14:55:27 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:31:26 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_putstrn(char *str, size_t n);
 void	ft_putstr(char *str);
 // ft_putnbr_base.c
 
-void	ft_putnbr_base(long nbr, char *base);
+void	ft_putnbr_base(long nbr, char *base, int omit_sign);
 // print_string.c
 
 int		print_string(char *str, t_opt *opt);
