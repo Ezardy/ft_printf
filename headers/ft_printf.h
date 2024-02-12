@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:01:48 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/08 20:57:26 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/09 16:44:25 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ typedef struct s_opt
 	int		precision;
 }	t_opt;
 
+typedef struct s_render
+{
+	size_t			value;
+	char			*sign;
+	unsigned int	sign_len;
+	char			*base_signs;
+	unsigned int	base;
+}	t_render;
+
 // options_parser.c
 
 int		parse_opt(const char *format, t_opt *opt);
@@ -46,7 +55,7 @@ int		print_string(char *str, t_opt *opt);
 int		print_char(char c, t_opt *opt);
 // print_int.c
 
-int	print_pointer(void *p, t_opt *opt);
-int		print_int_10(int value, t_opt *opt);
-int		print_int_16(int value, t_opt *opt, int lowercase);
+int		print_pointer(void *p, t_opt *opt);
+int		print_int_10(long value, t_opt *opt);
+int		print_int_16(long value, t_opt *opt, int lowercase);
 #endif

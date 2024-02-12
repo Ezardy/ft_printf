@@ -6,11 +6,11 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:03:05 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/08 19:00:46 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/09 17:00:41 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c);
 void	ft_putnchar(char c, size_t n);

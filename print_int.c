@@ -6,11 +6,11 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:47:44 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/08 20:56:38 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 13:05:13 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print_int.h"
+#include "ft_printf.h"
 
 static int	print_int(t_render *render, t_opt *opt);
 static int	count_digits(size_t value, unsigned int base);
@@ -39,6 +39,8 @@ int	print_int_10(long value, t_opt *opt)
 	}
 	if (value < 0)
 		render.value = -value;
+	else
+		render.value = value;
 	render.base = 10;
 	render.base_signs = "0123456789";
 	return (print_int(&render, opt));
@@ -77,7 +79,7 @@ static int	print_int(t_render *render, t_opt *opt)
 	int	len;
 
 	len = count_digits(render->value, render->base);
-	prec_len = len - opt->precision;
+	prec_len = opt->precision - len;
 	if (prec_len < 0)
 		prec_len = 0;
 	pad_len = opt->width - len - render->sign_len - prec_len;
@@ -87,7 +89,7 @@ static int	print_int(t_render *render, t_opt *opt)
 		ft_putnchar(opt->pad, pad_len);
 	ft_putstr(render->sign);
 	ft_putnchar('0', prec_len);
-	ft_putnbr_base(render->value, render->base);
+	ft_putnbr_base(render->value, render->base_signs);
 	if (opt->left)
 		ft_putnchar(opt->pad, pad_len);
 	return (len + pad_len + prec_len + render->sign_len);
@@ -97,11 +99,16 @@ static int	count_digits(size_t value, unsigned int base)
 {
 	int	count;
 
-	count = 0;
-	while (value)
+	if (value == 0)
+		count = 1;
+	else
 	{
-		value /= base;
-		count++;
+		count = 0;
+		while (value)
+		{
+			value /= base;
+			count++;
+		}
 	}
 	return (count);
 }

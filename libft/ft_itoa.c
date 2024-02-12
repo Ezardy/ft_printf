@@ -6,14 +6,13 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:09:31 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/07 18:39:20 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/09 22:07:53 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int	num_places_pos(int n);
 static int	num_places(int n);
 static void	ft_output(char *out, int n, int places);
 
@@ -34,7 +33,7 @@ char	*ft_itoa(int n)
 	return (result);
 }
 
-static int	num_places_pos(int n)
+int	num_places_pos(int n)
 {
 	int	count;
 

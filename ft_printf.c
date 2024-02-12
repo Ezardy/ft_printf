@@ -6,13 +6,15 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 20:38:09 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/08 21:09:14 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 13:11:44 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libftprintf.h"
 
 static void	clear_opt(t_opt *opt);
+static int	print_value(va_list args, t_opt *opt);
 
 int	ft_printf(const char *format, ...)
 {
@@ -27,25 +29,32 @@ int	ft_printf(const char *format, ...)
 	{
 		format += parse_opt(format, &opt);
 		if (!opt.error)
-		{
-			if (opt.format == 'c')
-				printed += print_char(va_arg(format_args, int), &opt);
-			else if (opt.format == 's')
-				printed += print_string(va_arg(format_args, char *), &opt);
-			else if (opt.format == 'p')
-				printed += print_pointer(va_arg(format_args, void *), &opt);
-			else if (opt.format == 'd' || opt.format == 'i')
-				printed += print_int_10(va_arg(format_args, int), &opt);
-			else if (opt.format == 'u')
-				printed += print_int_10(va_arg(format_args, unsigned int), &opt);
-			else if (opt.format == 'x' || opt.format == 'X')
-				printed += print_int_16(va_arg(format_args, int), &opt, opt.format == 'x');
-			else
-				printed += print_char('%', &opt);
-		}
+			printed += print_value(format_args, &opt);
 		clear_opt(&opt);
 	}
 	va_end(format_args);
+	return (printed);
+}
+
+static int	print_value(va_list args, t_opt *opt)
+{
+	int	printed;
+
+	if (opt->format == 'c')
+		printed = print_char(va_arg(args, int), opt);
+	else if (opt->format == 's')
+		printed = print_string(va_arg(args, char *), opt);
+	else if (opt->format == 'p')
+		printed = print_pointer(va_arg(args, void *), opt);
+	else if (opt->format == 'd' || opt->format == 'i')
+		printed = print_int_10(va_arg(args, int), opt);
+	else if (opt->format == 'u')
+		printed = print_int_10(va_arg(args, unsigned int), opt);
+	else if (opt->format == 'x' || opt->format == 'X')
+		printed = print_int_16(va_arg(args, unsigned int), opt,
+				opt->format == 'x');
+	else
+		printed = print_char(opt->format, opt);
 	return (printed);
 }
 
@@ -60,5 +69,4 @@ static void	clear_opt(t_opt *opt)
 	opt->space = 0;
 	opt->width = 0;
 	opt->pad = ' ';
-	opt->sign = "";
 }
