@@ -1,10 +1,10 @@
-HEADERS_DIR=./headers
+SOURCES_DIR=./sources
 LIBFT_DIR=./libft
+HEADERS_DIR=./headers
+BUILD_DIR=./build
 
-IFLAGS=-I$(LIBFT_DIR) -I$(HEADERS_DIR)
+IFLAGS=$(addprefix -I, $(HEADERS_DIR) . $(LIBFT_DIR))
 CFLAGS=-Wall -Wextra -Werror -g
-
-BUILD_DIR=build
 
 MODULES=ft_putnbr_base options_parser output print_int print_string ft_printf
 OBJ=$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(MODULES)))
@@ -22,7 +22,7 @@ libftprintf.a: $(LIBFT_DIR)/libft.a $(BUILD_DIR) $(OBJ)
 $(LIBFT_DIR)/libft.a: $(LIBFT_DIR)/libft.h
 	make -C libft all
 
-$(BUILD_DIR)/%.o: %.c Makefile $(HEADERS_DIR)/utilities.h $(LIBFT_DIR)/libft.h ft_printf.h
+$(BUILD_DIR)/%.o: $(SOURCES_DIR)/%.c Makefile $(HEADERS_DIR)/utilities.h $(LIBFT_DIR)/libft.h ft_printf.h
 	cc $(CFLAGS) $(IFLAGS) -o $@ -c $<
 
 $(BUILD_DIR):
@@ -34,3 +34,5 @@ clean:
 
 fclean: clean
 	rm -f libftprintf.a
+
+re: fclean all
