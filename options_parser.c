@@ -6,11 +6,11 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/11 20:33:15 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:24:23 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "utilities.h"
 
 static int	parse_flags(const char *format, t_opt *opt);
 static int	parse_width(const char *format, t_opt *opt);

@@ -6,12 +6,12 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 20:38:09 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 13:11:44 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:56:20 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libftprintf.h"
+#include "utilities.h"
 
 static void	clear_opt(t_opt *opt);
 static int	print_value(va_list args, t_opt *opt);
@@ -69,4 +69,5 @@ static void	clear_opt(t_opt *opt)
 	opt->space = 0;
 	opt->width = 0;
 	opt->pad = ' ';
+	opt->force_len = 0;
 }

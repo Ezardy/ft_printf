@@ -22,7 +22,7 @@ libftprintf.a: $(LIBFT_DIR)/libft.a $(BUILD_DIR) $(OBJ)
 $(LIBFT_DIR)/libft.a: $(LIBFT_DIR)/libft.h
 	make -C libft all
 
-$(BUILD_DIR)/%.o: %.c Makefile $(HEADERS_DIR)/ft_printf.h $(LIBFT_DIR)/libft.h libftprintf.h
+$(BUILD_DIR)/%.o: %.c Makefile $(HEADERS_DIR)/utilities.h $(LIBFT_DIR)/libft.h ft_printf.h
 	cc $(CFLAGS) $(IFLAGS) -o $@ -c $<
 
 $(BUILD_DIR):

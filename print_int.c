@@ -6,11 +6,11 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:47:44 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 13:05:13 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:24:37 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "utilities.h"
 
 static int	print_int(t_render *render, t_opt *opt);
 static int	count_digits(size_t value, unsigned int base);

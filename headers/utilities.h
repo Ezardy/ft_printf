@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   utilities.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:01:48 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/09 16:44:25 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:55:27 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef UTILITIES_H
+# define UTILITIES_H
 # include <stdarg.h>
 # include "libft.h"
 
@@ -26,6 +26,7 @@ typedef struct s_opt
 	int		error : 12;
 	int		width;
 	int		precision;
+	int		force_len;
 }	t_opt;
 
 typedef struct s_render

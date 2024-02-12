@@ -6,11 +6,11 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 20:20:37 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/07 22:10:32 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:26:20 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "utilities.h"
 
 static int	isunique(char *str);
 static int	isusable(char *str);
