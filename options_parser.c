@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 16:17:02 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 21:05:22 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ static int	parse_flags(const char *format, t_opt *opt)
 	flag_exists = 1;
 	while (flag_exists)
 	{
-		offset++;
-		if (*format == '#')
+		if (format[offset] == '#')
 			opt->alt = 1;
-		else if (*format == '0')
+		else if (format[offset] == '0')
 			opt->pad = '0';
-		else if (*format == '-')
+		else if (format[offset] == '-')
 			opt->left = 1;
-		else if (*format == ' ')
+		else if (format[offset] == ' ')
 			opt->space = 1;
-		else if (*format == '+')
+		else if (format[offset] == '+')
 			opt->ens_sign = 1;
 		else
 		{
 			flag_exists = 0;
 			offset--;
 		}
+		offset++;
 	}
 	return (offset);
 }
