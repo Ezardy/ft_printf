@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 21:05:22 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 21:36:56 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ static int	parse_precision(const char *format, t_opt *opt)
 	if (*format++ == '.')
 	{
 		offset = 1;
+		opt->precision = 0;
 		if (ft_isdigit(*format))
 		{
 			opt->precision = ft_atoi(format);
@@ -113,7 +114,8 @@ static int	parse_specifier(const char *format, t_opt *opt)
 	{
 		offset = 1;
 		opt->format = *format;
-		if (!(*format == 's' || *format == 'c' || *format == '%'))
+		if (!(*format == 's' || *format == 'c' || *format == '%')
+			&& opt->precision == -1)
 			opt->precision = 0;
 		if (*format == 'p')
 			opt->alt = 1;
