@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:47:44 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 21:41:43 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/12 21:55:58 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	print_int_16(long value, t_opt *opt, int lowercase)
 {
 	t_render	render;
 
-	if (opt->alt)
+	if (opt->alt && (value || opt->format == 'p'))
 	{
 		render.sign_len = 2;
 		if (lowercase)
