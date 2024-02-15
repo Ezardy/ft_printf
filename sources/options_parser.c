@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/15 15:36:12 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:34:40 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	parse_opt(const char *format, t_opt *opt)
 				opt->alt = 0;
 		}
 	}
-	else
-		opt->format = *format;
 	return (offset);
 }
 
