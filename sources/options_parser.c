@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 21:36:56 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/15 14:33:22 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ int	parse_opt(const char *format, t_opt *opt)
 		offset += parse_width(format + offset, opt);
 		offset += parse_precision(format + offset, opt);
 		offset += parse_specifier(format + offset, opt);
-		if (opt->left || (ft_strchr("diuxX", opt->format) && opt->precision))
-			opt->pad = ' ';
-		if (ft_strchr("cdipsu", opt->format))
-			opt->alt = 0;
+		if (!opt->error)
+		{
+			if (opt->left || (ft_strchr("diuxX", opt->format)
+					&& opt->precision > -1))
+				opt->pad = ' ';
+			if (ft_strchr("cdipsu", opt->format))
+				opt->alt = 0;
+		}
 	}
 	else
 		opt->format = *format;
@@ -76,9 +80,7 @@ static int	parse_width(const char *format, t_opt *opt)
 	if (ft_isdigit(*format))
 	{
 		opt->width = ft_atoi(format);
-		offset = num_places_pos(opt->width);
-		while (*(format + offset) == '0')
-			offset++;
+		offset = count_digits_str(format);
 	}
 	else
 		offset = 0;
@@ -91,15 +93,8 @@ static int	parse_precision(const char *format, t_opt *opt)
 
 	if (*format++ == '.')
 	{
-		offset = 1;
-		opt->precision = 0;
-		if (ft_isdigit(*format))
-		{
-			opt->precision = ft_atoi(format);
-			offset += num_places_pos(opt->precision);
-			while (*(format + offset) == '0')
-				offset++;
-		}
+		opt->precision = ft_atoi(format);
+		offset = count_digits_str(format) + 1;
 	}
 	else
 		offset = 0;
@@ -114,9 +109,6 @@ static int	parse_specifier(const char *format, t_opt *opt)
 	{
 		offset = 1;
 		opt->format = *format;
-		if (!(*format == 's' || *format == 'c' || *format == '%')
-			&& opt->precision == -1)
-			opt->precision = 0;
 		if (*format == 'p')
 			opt->alt = 1;
 	}

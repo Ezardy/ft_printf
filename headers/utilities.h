@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:01:48 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 15:31:26 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/14 21:51:01 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ typedef struct s_opt
 	int		error : 12;
 	int		width;
 	int		precision;
-	int		force_len;
 }	t_opt;
 
 typedef struct s_render
 {
 	size_t			value;
 	char			*sign;
+	char			*prefix;
+	unsigned int	prefix_len;
 	unsigned int	sign_len;
 	char			*base_signs;
 	unsigned int	base;
@@ -59,4 +60,12 @@ int		print_char(char c, t_opt *opt);
 int		print_pointer(void *p, t_opt *opt);
 int		print_int_10(long value, t_opt *opt);
 int		print_int_16(long value, t_opt *opt, int lowercase);
+int		print_uint(long value, t_opt *opt);
+// common.c
+
+int		count_digits(size_t value, unsigned int base);
+int		count_digits_str(const char *str);
+// print_int_pipe.c
+
+int		print_int(t_render *render, t_opt *opt);
 #endif

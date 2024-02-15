@@ -6,7 +6,7 @@ BUILD_DIR=./build
 IFLAGS=$(addprefix -I, $(HEADERS_DIR) . $(LIBFT_DIR))
 CFLAGS=-Wall -Wextra -Werror -g
 
-MODULES=ft_putnbr_base options_parser output print_int print_string ft_printf
+MODULES=ft_putnbr_base options_parser output print_int print_string ft_printf common print_int_pipe
 OBJ=$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(MODULES)))
 
 .PHONY: all re clean fclean bonus

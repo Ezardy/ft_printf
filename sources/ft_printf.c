@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 20:38:09 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/12 14:56:20 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/14 21:56:03 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	print_value(va_list args, t_opt *opt)
 	else if (opt->format == 'd' || opt->format == 'i')
 		printed = print_int_10(va_arg(args, int), opt);
 	else if (opt->format == 'u')
-		printed = print_int_10(va_arg(args, unsigned int), opt);
+		printed = print_uint(va_arg(args, unsigned int), opt);
 	else if (opt->format == 'x' || opt->format == 'X')
 		printed = print_int_16(va_arg(args, unsigned int), opt,
 				opt->format == 'x');
@@ -69,5 +69,4 @@ static void	clear_opt(t_opt *opt)
 	opt->space = 0;
 	opt->width = 0;
 	opt->pad = ' ';
-	opt->force_len = 0;
 }
