@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/15 14:33:22 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:36:12 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ static int	parse_specifier(const char *format, t_opt *opt)
 	{
 		offset = 1;
 		opt->format = *format;
-		if (*format == 'p')
-			opt->alt = 1;
 	}
 	else
 	{
