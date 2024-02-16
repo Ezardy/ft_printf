@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 20:38:09 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/15 19:36:16 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/16 14:38:28 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@ int	ft_printf(const char *format, ...)
 	int		offset;
 
 	printed = 0;
-	clear_opt(&opt);
-	va_start(format_args, format);
-	while (!opt.error && *format)
+	if (format)
 	{
-		offset = parse_opt(format, &opt);
-		if (!opt.error)
-			printed += print_value(format_args, *format, &opt);
-		format += offset;
 		clear_opt(&opt);
+		va_start(format_args, format);
+		while (*format)
+		{
+			offset = parse_opt(format, &opt);
+			if (!opt.error)
+				printed += print_value(format_args, *format, &opt);
+			format += offset;
+			clear_opt(&opt);
+		}
 	}
 	va_end(format_args);
 	return (printed);
