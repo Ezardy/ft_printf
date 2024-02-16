@@ -6,7 +6,7 @@
 /*   By: zanikin <zanikin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:13:22 by zanikin           #+#    #+#             */
-/*   Updated: 2024/02/16 14:38:02 by zanikin          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:25:08 by zanikin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static int	parse_specifier(const char *format, t_opt *opt)
 {
 	int	offset;
 
-	if (ft_strchr("cspdiuxX%", *format))
+	if (*format && ft_strchr("cspdiuxX%", *format))
 	{
 		offset = 1;
 		opt->format = *format;
