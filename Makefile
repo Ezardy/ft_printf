@@ -4,7 +4,7 @@ HEADERS_DIR=./headers
 BUILD_DIR=./build
 
 IFLAGS=$(addprefix -I, $(HEADERS_DIR) . $(LIBFT_DIR))
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror
 
 MODULES=ft_putnbr_base options_parser output print_int print_string ft_printf common print_int_pipe
 OBJ=$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(MODULES)))
